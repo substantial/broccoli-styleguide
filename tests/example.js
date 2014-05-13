@@ -1,7 +1,7 @@
 var test = require("tap").test;
 var Builder = require('broccoli').Builder;
-var serializeDir = require('../lib/pages-directory').serializeDir;
-var deserializeDir = require('../lib/pages-directory').deserializeDir;
+var serializeDir = require('../lib/pages-plugin').serializeDir;
+var deserializeDir = require('../lib/pages-plugin').deserializeDir;
 var fixturify = require('fixturify');
 var quickTemp = require('quick-temp');
 
