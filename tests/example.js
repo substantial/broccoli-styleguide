@@ -1,14 +1,12 @@
 var test = require("tap").test;
 var Builder = require('broccoli').Builder;
-var jsonify = require('../lib/jsonify');
-var objectify = require('../lib/jsonify').objectify;
+var serializeDir = require('../lib/pages-directory').serializeDir;
+var deserializeDir = require('../lib/pages-directory').deserializeDir;
 var fixturify = require('fixturify');
 var quickTemp = require('quick-temp');
 
 test("files are converted to JSON", function(t){
   t.end();
-
-  var updateCache = jsonify.updateCache;
 
   quickTemp.makeOrRemake(this, 'tmpSrc');
   quickTemp.makeOrRemake(this, 'tmpDest');
@@ -20,9 +18,9 @@ test("files are converted to JSON", function(t){
   };
 
   fixturify.writeSync(this.tmpSrc, files);
-  updateCache(this.tmpSrc, this.tmpDest);
+  serializeDir(this.tmpSrc, this.tmpDest);
 
-  var built = objectify(this.tmpDest);
+  var built = deserializeDir(this.tmpDest);
 
   t.equal(Object.keys(built).length, 3);
 
