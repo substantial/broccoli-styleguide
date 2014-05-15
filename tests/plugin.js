@@ -1,7 +1,7 @@
 var test = require("tap").test;
 var Builder = require('broccoli').Builder;
-var serializeDir = require('../lib/pages-plugin').serializeDir;
-var deserializeDir = require('../lib/pages-plugin').deserializeDir;
+var serializeDir = require('../lib/plugin').serializeDir;
+var deserializeDir = require('../lib/plugin').deserializeDir;
 var fixturify = require('fixturify');
 var quickTemp = require('quick-temp');
 
@@ -12,9 +12,9 @@ test("files are converted to JSON", function(t){
   quickTemp.makeOrRemake(this, 'tmpDest');
 
   var files = {
-    'file.html': "---\ntitle: HTML Title\n---\nHTML Body",
-    'file.md': "---\ntitle: Markdown Title\n---\nMarkdown **Body**",
-    'file.hbs': "---\ntitle: Handlebars Title\n---\nHandlebars {{body}}"
+    'file1.html': "---\ntitle: HTML Title\n---\nHTML Body",
+    'file2.md': "---\ntitle: Markdown Title\n---\nMarkdown **Body**",
+    'file3.hbs': "---\ntitle: Handlebars Title\n---\nHandlebars {{body}}"
   };
 
   fixturify.writeSync(this.tmpSrc, files);
@@ -24,22 +24,22 @@ test("files are converted to JSON", function(t){
 
   t.equal(Object.keys(built).length, 3);
 
-  t.ok(built['file.html.page']);
-  t.deepEqual(built['file.html.page'], {
+  t.ok(built['file1.page']);
+  t.deepEqual(built['file1.page'], {
     title: 'HTML Title',
     type: 'html',
     body: 'HTML Body'
   });
 
-  t.ok(built['file.md.page']);
-  t.deepEqual(built['file.md.page'], {
+  t.ok(built['file2.page']);
+  t.deepEqual(built['file2.page'], {
     title: 'Markdown Title',
     type: 'markdown',
     body: 'Markdown **Body**'
   });
 
-  t.ok(built['file.hbs.page']);
-  t.deepEqual(built['file.hbs.page'], {
+  t.ok(built['file3.page']);
+  t.deepEqual(built['file3.page'], {
     title: 'Handlebars Title',
     type: 'handlebars',
     body: 'Handlebars {{body}}'
