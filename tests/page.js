@@ -17,7 +17,8 @@ test("toPage with nested objects", function(t){
     'about': {
       'file1.html': "---\ntitle: About -> File1\n---\nHandlebars {{body}}",
       'file2.md': "---\ntitle: About -> File2\n---\nMarkdown **Body**"
-    }
+    },
+    'about.md': "---\ntitle: About\n---\nMarkdown **Body**"
   };
 
   fixturify.writeSync(this.tmpSrc, files);
@@ -36,6 +37,12 @@ test("toPage with nested objects", function(t){
     t.equal(page._.about.parent, page);
     t.type(page._.about._.file1, 'object');
     t.equal(page._.about._.file1.parent, page._.about);
+    t.end();
+  });
+
+  t.test('page and directory with same name are merged', function(t){
+    t.type(page._.about._, 'object');
+    t.equal(Object.keys(page._.about._).length, 2);
     t.end();
   });
 
