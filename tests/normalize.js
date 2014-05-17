@@ -1,11 +1,10 @@
 var test = require("tap").test;
-var Builder = require('broccoli').Builder;
-var normalize = require('../lib/normalize');
 var fixturify = require('fixturify');
 var quickTemp = require('quick-temp');
 
-test("convert to pagess", function(t){
-  t.end();
+var normalize = require('../lib/normalize');
+
+test("convert to pages", function(t){
 
   quickTemp.makeOrRemake(this, 'tmpSrc');
   quickTemp.makeOrRemake(this, 'tmpDest');
@@ -31,6 +30,7 @@ test("convert to pagess", function(t){
     t.end();
   });
 
+  t.end();
 });
 
 test('convert files in directory to pages', function(t){
