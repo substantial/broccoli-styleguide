@@ -2,7 +2,7 @@ var test = require("tap").test;
 var fixturify = require('fixturify');
 var quickTemp = require('quick-temp');
 
-var normalize = require('../lib/normalize');
+var normalize = require('../lib/plugin').normalize;
 var toPage = require('../lib/page').toPage;
 
 test("toPage with nested objects", function(t){
@@ -30,9 +30,9 @@ test("toPage with nested objects", function(t){
     t.plan(9);
     t.type(page._, 'object');
     t.type(page.title, 'string');
-    t.type(page.body, 'string');
+    t.type(page._source, 'string');
     t.equal(page.title, 'Index File');
-    t.equal(page.body, 'Index Body');
+    t.equal(page._source, 'Index Body');
     t.type(page._.about, 'object');
     t.equal(page._.about.parent, page);
     t.type(page._.about._.file1, 'object');

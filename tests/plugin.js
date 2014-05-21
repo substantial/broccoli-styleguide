@@ -2,7 +2,7 @@ var test = require("tap").test;
 var fixturify = require('fixturify');
 var quickTemp = require('quick-temp');
 
-var normalize = require('../lib/normalize');
+var normalize = require('../lib/plugin').normalize;
 
 test("convert to pages", function(t){
 
