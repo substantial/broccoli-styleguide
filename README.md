@@ -8,7 +8,7 @@ In metadata, you can specify a Handlebars template to be used to wrap the conten
 ---
 title: Hello World
 description: some text
-template: default.hbs
+template: default
 ---
 **Beautiful World**
 ```
@@ -32,3 +32,4 @@ module.exports = pages.toTree();
 ```
 
 You can see an example [Brocfile.js](example/Brocfile.js) and [example](example) directory.
+

@@ -4,7 +4,7 @@
   "description": "Build HTML pages from Markdown and HTML fragments",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "./node_modules/tap/bin/tap.js ./tests/page.js ./tests/pages.js ./tests/parser.js ./tests/plugin.js ./tests/utils.js ./tests/filters/markdown.js"
+    "test": "./node_modules/tap/bin/tap.js ./tests/page.js ./tests/pages.js ./tests/parser.js ./tests/plugin.js ./tests/utils.js ./tests/filters/markdown.js ./tests/filters/html.js ./tests/filters/handlebars.js ./tests/filters/template.js"
   },
   "tags": [
     "broccoli-plugin",
