@@ -1,49 +1,78 @@
-# Broccoli Pages Filter
+# Broccoli Styleguide Filter
 
-Allows you to generate HTML from Markdown and HTML fragments. You can specify metadata for each page.
-In metadata, you can specify a Handlebars template to be used to wrap this content.
+**Generate an HTML styleguide from CSS containing Markdown documentation &
+examples.**
 
-## Example Page
-```markdown
+Inspired by [Hologram](https://github.com/trulia/hologram) for Ruby.
+
+Originally forked from [broccoli-pages](https://github.com/quandl/broccoli-pages).
+
+Maintains the original broccoli-pages functionality to build a static site from
+HTML, Markdown, & Handlebars templates.
+
+Adds parsing of CSS files for documentation blocks: `/*doc … */`. The contents
+of documentation blocks are parsed as a Markdown file, with the addition of
+**\*_example** code blocks, like Hologram.
+
+## Example CSS file
+```
+/*doc
 ---
-title: Hello World
-description: some text
+title: App Identity
+name: app-identity
+category: atom
 template: default.hbs
 ---
-**Beautiful World**
+
+```html_example
+<div class="app-identity">
+  <img class="main-logo" src="/images/logo.png" alt="">
+  <div class="page-title">Appify</div>
+</div>
 ```
 
-## Usage
+*/
+```
+
+## Example Brocfile.js
 
 ```javascript
-var MarkdownPages = require('broccoli-pages').MarkdownPages;
-var HTMLPages = require('broccoli-pages').HTMLPages;
-var HBSPages = require('broccoli-pages').HBSPages;
 var pickFiles = require('broccoli-static-compiler');
 
+var CSSPages = require('broccoli-styleguide').CSSPages;
+var MarkdownPages = require('broccoli-styleguide').MarkdownPages;
+var HTMLPages = require('broccoli-styleguide').HTMLPages;
+var HBSPages = require('broccoli-styleguide').HBSPages;
+
 var options = {
-  templates: './templates',
-  helpers: './helpers',
-  partials: './templates/partials',
+  templates: './styleguide/templates',
+  helpers: './styleguide/helpers',
+  partials: './styleguide/templates/partials',
   globals: {
-    message: "Hello World!",
-    team: [ 'Bob', 'Joe', 'Mary' ]
   }
 };
 
-var content = pickFiles('content', {
+var styleguideContent = pickFiles('app/styles', {
   srcDir: '/',
   files: ['**/*.*'],
-  destDir: '/'
+  destDir: '/public/styleguide/'
 });
 
-var html;
+var styleguideHTML;
 
-html = HTMLPages(content, options);
-html = MarkdownPages(html, options);
-html = HBSPages(html, options);
+styleguideHTML = CSSPages(styleguideContent, options);
+styleguideHTML = HTMLPages(styleguideHTML, options);
+styleguideHTML = MarkdownPages(styleguideHTML, options);
+styleguideHTML = HBSPages(styleguideHTML, options);
 
-module.exports = html;
+module.exports = styleguideHTML;
 ```
 
-You can see an example [Brocfile.js](Brocfile.js) and [example](example) directory.
+### with ember-cli
+
+Replace the last `module exports…` line with:
+
+```javascript
+var mergeTrees = require('broccoli-merge-trees');
+module.exports = mergeTrees([ app.toTree(), styleguideHTML ]);
+```

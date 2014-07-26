@@ -1,7 +1,8 @@
 {
-  "name": "broccoli-pages",
+  "name": "broccoli-styleguide",
+  "private": true,
   "version": "0.2.0",
-  "description": "Build HTML pages from Markdown and HTML fragments",
+  "description": "Build an HTML styleguide from CSS w/ Markdown",
   "main": "./lib/index.js",
   "scripts": {
     "test": "./node_modules/tap/bin/tap.js ./tests"
