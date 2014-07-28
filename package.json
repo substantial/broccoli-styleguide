@@ -2,6 +2,10 @@
   "name": "broccoli-styleguide",
   "version": "0.2.1",
   "description": "Build an HTML styleguide from CSS w/ Markdown",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/substantial/broccoli-styleguide.git"
+  },
   "main": "./lib/index.js",
   "scripts": {
     "test": "./node_modules/tap/bin/tap.js ./tests"
