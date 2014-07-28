@@ -1,7 +1,6 @@
 {
   "name": "broccoli-styleguide",
-  "private": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Build an HTML styleguide from CSS w/ Markdown",
   "main": "./lib/index.js",
   "scripts": {
@@ -12,7 +11,7 @@
     "markdown",
     "handlebars"
   ],
-  "author": "",
+  "author": "Mars <mars@substantial.com>",
   "license": "ISC",
   "dependencies": {
     "marked": "~0.3.2",
