@@ -74,5 +74,5 @@ Replace the last `module exports…` line with:
 
 ```javascript
 var mergeTrees = require('broccoli-merge-trees');
-module.exports = mergeTrees([ app.toTree(), styleguideHTML ]);
+module.exports = mergeTrees([ styleguideHTML, app.toTree() ]);
 ```
