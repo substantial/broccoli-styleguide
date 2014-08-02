@@ -29,7 +29,7 @@ template: default.hbs
   <img class="main-logo" src="/images/logo.png" alt="">
   <div class="page-title">Appify</div>
 </div>
-```
+\```
 
 */
 ```
