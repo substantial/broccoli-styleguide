@@ -40,32 +40,23 @@ template: default.hbs
 var pickFiles = require('broccoli-static-compiler');
 
 var CSSPages = require('broccoli-styleguide').CSSPages;
-var MarkdownPages = require('broccoli-styleguide').MarkdownPages;
-var HTMLPages = require('broccoli-styleguide').HTMLPages;
-var HBSPages = require('broccoli-styleguide').HBSPages;
 
 var options = {
   templates: './styleguide/templates',
   helpers: './styleguide/helpers',
   partials: './styleguide/templates/partials',
-  globals: {
-  }
+  extensions: ['css', 'scss', 'less'],
+  targetExtension: 'hbs',
+  globals: {}
 };
 
 var styleguideContent = pickFiles('app/styles', {
   srcDir: '/',
   files: ['**/*.*'],
-  destDir: '/public/styleguide/'
+  destDir: '/styleguide/'
 });
 
-var styleguideHTML;
-
-styleguideHTML = CSSPages(styleguideContent, options);
-styleguideHTML = HTMLPages(styleguideHTML, options);
-styleguideHTML = MarkdownPages(styleguideHTML, options);
-styleguideHTML = HBSPages(styleguideHTML, options);
-
-module.exports = styleguideHTML;
+module.exports = CSSPages(styleguideContent, options);;
 ```
 
 ### with ember-cli
