@@ -3,6 +3,8 @@
 **Generate an HTML styleguide from CSS containing Markdown documentation &
 examples.**
 
+:construction: *This project was a spike; it is not complete or maintained. To be useful, the styleguide should be to be able to load the Ember app's JS & CSS, but that is not possible without building the styleguide as part of the Ember app… which turns out to be an entirely different project beyond the original fork.*
+
 Inspired by [Hologram](https://github.com/trulia/hologram) for Ruby.
 
 Originally forked from [broccoli-pages](https://github.com/quandl/broccoli-pages).
